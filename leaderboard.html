@@ -1,0 +1,85 @@
+<head>
+	<title>BoozeNet</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+</head>
+
+<body>
+	<div id="outer">
+		<table>
+			<tr>
+				<td><img src="beer_vector-200.png" /></td>
+				<td>{{> game}}</td>
+			</tr>
+		</table>
+		{{> gallery }}
+		<div class="none" />
+		{{> leaderboard}}
+	</div>
+</body>
+
+<template name="gallery">
+<div class="gallery">
+	{{#each photos}}
+	{{> photo}}
+	{{/each}}
+</div>
+</template>
+
+<template name="photo">
+	<img width="100" height="100" src="{{url}}" />
+</template>
+
+<template name="leaderboard">
+<div class="leaderboard">
+	{{#each players}}
+	{{> player}}
+	{{/each}}
+</div>
+
+{{#if selected_name}}
+<div class="details">
+	<div class="name">Whats Up {{selected_name}}</div>
+	<input type="button" class="uploadImg" value="Add Photo" />
+	<input id='imgUrlText' type='text' size="80" name='imageUrl' class='imageUrl' />
+</div>
+{{/if}}
+
+{{#unless selected_name}}
+<div class="none">Click a player to select</div>
+{{/unless}}
+</template>
+
+<template name="player">
+<div class="player {{selected}}">
+	<span class="name">{{name}} | {{phone}}</span>
+	<span class="score">Calories {{score}}</span>
+</div>
+</template>
+
+<template name="oldgame">
+<div class="newGame">
+	<input type="button" class="newGame" value="New Game" />
+	<input type="button" class="addDrinker" value="Join" />
+	<br />
+	Enter Phone#	<input id='phoneText' type='text' name='phoneNumber' class='phoneNumber' />
+	<br />
+	Enter Name:	<input id='nameText' type='text' name='newName' class='newName' />
+	<br />
+</div>
+</template>
+
+
+<template name="game">
+<div class="newGame">
+	<input type="button" class="newGame" value="New Game" />
+	<br />
+	<form class="standard_form">
+		<label>Enter Phone#:</label><input id='phoneText' type='text' name='phoneNumber' class='phoneNumber' />
+		<label>Enter Name:</label><input id='nameText' type='text' name='newName' class='newName' />
+		<div class="submit_links">
+			<input type="button" class="addDrinker" value="Join" />
+		</div>
+	</form>
+
+</div>
+</template>
